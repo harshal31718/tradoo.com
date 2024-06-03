@@ -147,7 +147,8 @@ declare interface HeaderBoxProps {
 }
 
 declare interface MobileNavProps {
-  user: User;
+  email: string,
+  name: string
 }
 
 declare interface PageHeaderProps {
@@ -200,18 +201,21 @@ declare interface BalanceBoxProps {
 }
 
 declare interface FooterProps {
-  user: User;
+  email: string,
+  name: string,
   type?: 'mobile' | 'desktop'
 }
 
 declare interface RightSidebarProps {
-  user: User;
-  transactions: Transaction[];
+  email: string,
+  name: string
+  // transactions: Transaction[];
   banks: Bank[] & Account[];
 }
 
 declare interface SiderbarProps {
-  user: User;
+  email: string,
+  name: string
 }
 
 declare interface RecentTransactionsProps {

@@ -11,11 +11,11 @@ export default async function RootLayout({
 }>) {
 
   const loggedIn = await getLoggedInUser();
-  // console.log(loggedIn);
   if(!loggedIn) redirect('/sign-in');
+
   return (
     <main className="flex h-screen w-full font-inter">
-        <Sidebar user={loggedIn}/>
+        <Sidebar email={loggedIn.email} name={loggedIn.name}/>
         <div className="flex size-full flex-col">
           <div className="root-layout">
             <Image 
@@ -25,7 +25,7 @@ export default async function RootLayout({
               alt="menu icon"
             />
             <div>
-              <MobileNav user={loggedIn}/>
+              <MobileNav email={loggedIn.email} name={loggedIn.name}/>
             </div>
           </div>
           {children}

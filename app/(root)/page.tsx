@@ -34,11 +34,11 @@ const Home = async () => {
         </header>
         {/* recent transactions */}
       </div>
-      {/* <RightSidebar 
-        user={loggedIn}
-        transactions={account?.transactions}
-        banks={accountsData?.slice(0,2)}
-      /> */}
+      <RightSidebar 
+        email={loggedIn.email}
+        name={loggedIn.name}
+        banks={[]}
+      />
     </section>
   )
 }

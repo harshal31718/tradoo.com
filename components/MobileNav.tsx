@@ -7,7 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import Footer from "./Footer";
   
-const MobileNav = ({user}:MobileNavProps) => {
+const MobileNav = ({email,name}:MobileNavProps) => {
     const pathname = usePathname();
   return (
     <section className="w-full max-w-[264px]">
@@ -60,7 +60,7 @@ const MobileNav = ({user}:MobileNavProps) => {
                             })}
                         </nav>
                     </SheetClose>
-                    <Footer user={user} type="mobile"/>
+                    <Footer email={email} name={name} type="mobile"/>
                 </div>
             </SheetContent>
         </Sheet>
