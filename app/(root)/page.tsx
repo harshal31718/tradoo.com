@@ -1,14 +1,20 @@
-import BalanceBox from '@/components/BalanceBox';
 import HeaderBox from '@/components/HeaderBox'
+import BalanceBox from '@/components/BalanceBox';
 import RightSidebar from '@/components/RightSidebar';
-import React from 'react'
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-const Home = () => {
-  const loggedIn = {
-    firstName: "Harshal", 
-    lastName: "Dodke",
-    email: "harshal.dodke@gmail.com"
-  };
+const Home = async () => {
+  const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ 
+    userId: loggedIn.$id 
+  })
+
+  if(!accounts) return;
+  
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+  const account = await getAccount({ appwriteItemId })
 
   return (
     <section className='home'>
@@ -17,7 +23,7 @@ const Home = () => {
           <HeaderBox 
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || "Guest"}
+            user={loggedIn?.name || "Guest"}
             subText="Access and manage your accounts and Transactions."
           />
           <BalanceBox
@@ -30,8 +36,8 @@ const Home = () => {
       </div>
       <RightSidebar 
         user={loggedIn}
-        transactions={[]}
-        banks={[{currentBalance: 123.4},{currentBalance: 504}]}
+        transactions={account?.transactions}
+        banks={accountsData?.slice(0,2)}
       />
     </section>
   )

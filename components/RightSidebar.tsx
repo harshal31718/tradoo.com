@@ -1,7 +1,7 @@
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import BankCard from './BankCard'
+import AccountCard from './AccountCard'
 
 const RightSidebar = ({user,transactions,banks}:RightSidebarProps) => {
   return (
@@ -22,7 +22,7 @@ const RightSidebar = ({user,transactions,banks}:RightSidebarProps) => {
         </section>
         <section className="banks">
             <div className="flex w-full justify-between">
-                <h2 className="header-2">My Banks</h2>
+                <h2 className="header-2">My Accounts</h2>
                 <Link href="/" className='flex gap-2'>
                     <Image
                         src="/icons/plus.svg"
@@ -31,14 +31,14 @@ const RightSidebar = ({user,transactions,banks}:RightSidebarProps) => {
                         alt='plut'
                     />
                     <h2 className='text-14 font-semibold text-gray-700'>
-                        Add Bank
+                        Add Account
                     </h2>
                 </Link>
             </div>
             {banks?.length>0 && (
                 <div className='relative flex flex-1 flex-col items-center justify-center gap-5'>
                     <div className='relative z-10'>
-                        <BankCard
+                        <AccountCard
                             key={banks[0].$id}
                             account={banks[0]}
                             userName={`${user.firstName} ${user.lastName}`}
@@ -47,7 +47,7 @@ const RightSidebar = ({user,transactions,banks}:RightSidebarProps) => {
                     </div>
                     {banks[1] && (
                         <div className='absolute right-0 top-8 z-0 w-[90%]'>
-                            <BankCard
+                            <AccountCard
                                 key={banks[1].$id}
                                 account={banks[1]}
                                 userName={`${user.firstName} ${user.lastName}`}

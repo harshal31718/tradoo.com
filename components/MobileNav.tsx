@@ -1,18 +1,11 @@
 "use client";
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-  } from "@/components/ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetTrigger, } from "@/components/ui/sheet"
 import { sidebarLinks } from "@/constants"
 import { cn } from "@/lib/utils";
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Footer from "./Footer";
   
 const MobileNav = ({user}:MobileNavProps) => {
     const pathname = usePathname();
@@ -42,10 +35,8 @@ const MobileNav = ({user}:MobileNavProps) => {
                     <SheetClose asChild>
                         <nav className="flex h-full flex-col gap-6 pt-16 text-white">
                             {sidebarLinks.map((item)=>{
-                                const isActive = ( 
-                                    (pathname === item.route) || 
-                                    pathname.startsWith(`${item.route}/`)
-                                );
+                                const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`)
+                                
                                 return (
                                     <SheetClose asChild key={item.route}>
                                         <Link 
@@ -67,10 +58,9 @@ const MobileNav = ({user}:MobileNavProps) => {
                                     </SheetClose>
                                 )
                             })}
-                            {/* user */}
                         </nav>
                     </SheetClose>
-                    {/* footer */}
+                    <Footer user={user} type="mobile"/>
                 </div>
             </SheetContent>
         </Sheet>
